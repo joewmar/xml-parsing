@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<music>
+
+    <culture>
+        <folk>            
+            <song>Arbucklenian Polka</song>
+            <song>The Whistling Coon</song>
+        </folk>
+    </culture>
+    <element of="Music">
+        <melodies>
+            <melody id="1" type="Color Melodies">emotion melodies</melody>
+            <melody id="2" type="Direction Melodies">more different notes and don’t have a clear base pitch </melody>
+            <melody id="3" type="Blends">melodies that shift their base pitch every 1 or 2 bars. </melody>
+        </melodies>
+        <harmony>
+            <chords>three or more notes</chords>
+            <progressions>the foundation of harmony</progressions>
+        </harmony>
+    </element>
+    <genre>
+        <pop>
+            <song id="1" >Uptown Funk</song>
+        </pop>
+        <classical>
+            <song id="2" >Ave Maria</song>
+        </classical>
+        <rock>
+            <song id="3">Back in Black</song>
+        </rock>
+        <country>
+            <song id="4">I Walk the Line</song>
+        </country>
+        <jazz>
+            <song id="5" name="">Take Five</song>
+        </jazz>
+    </genre>
+    <industry>
+        <recording>
+            <company id="1" name="">Atlantic records</company>
+        </recording>
+        <streaming>
+            <company id="2" name="">YouTube Music</company>
+        </streaming>
+    </industry>
+</music>
