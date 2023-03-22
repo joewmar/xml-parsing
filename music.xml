@@ -3,8 +3,8 @@
 
     <culture>
         <folk>            
-            <song>Arbucklenian Polka</song>
-            <song>The Whistling Coon</song>
+            <example description="Folk Song 1">Arbucklenian Polka by Hartmann &amp; John</example>
+            <example description="Folk Song 2">The Whistling Coon by George W. Johnson</example>
         </folk>
     </culture>
     <element of="Music">
@@ -20,19 +20,19 @@
     </element>
     <genre>
         <pop>
-            <song id="1" >Uptown Funk</song>
+            <example description="Pop Song">Uptown Funk by Mark Ronson feat Bruno Mars</example >
         </pop>
         <classical>
-            <song id="2" >Ave Maria</song>
+            <example description="Classical Song">Ave Maria by Franz Schubert</example >
         </classical>
         <rock>
-            <song id="3">Back in Black</song>
+            <example description="Rock Song ">Back in Black by  AC/DC</example >
         </rock>
         <country>
-            <song id="4">I Walk the Line</song>
+            <example description="Country Song">I Walk the Line by Johnny Cash</example >
         </country>
         <jazz>
-            <song id="5" name="">Take Five</song>
+            <example description="Jazz Song">Take Five by Dave Brubeck Quartet</example >
         </jazz>
     </genre>
     <industry>

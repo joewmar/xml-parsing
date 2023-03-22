@@ -5,6 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        h3, h4, span{
+            text-transform: capitalize;
+        }
+    </style>
 </head>
 <body>
     <h2>Music Lesson:</h2>
@@ -34,42 +39,48 @@
             xmlDoc = xml.responseXML; 
 
             var titles = xmlDoc.getElementsByTagName('music')[0];
-
-
+            
             txt='';
             
             // Children
             for (i = 0; i < titles.children.length; i++) {
-                txt += `<h1>${titles.children[i].tagName}</h1>`;
+
+                // Get Element Name (Childs)
+                txt += `<h3>Lesson ${(i+1) + ": " + titles.children[i].tagName}</h3>`;
+                txt += `<ul>`;
                 for (j = 0; j < titles.children[i].children.length; j++) {
-                    txt += 
-                    `
-                    <ul>
-                        <li><h3>${titles.children[i].children[j].tagName}</h3>
+                    // Get Sub Child
+                    txt += `<li><h4>${titles.children[i].children[j].tagName}</h4>`;
                     
-                    `;
                     for (k = 0; k < titles.children[i].children[j].children.length; k++) {
+                        // Temp Data Replacement
+                        var content = "";
+                        // Condtions Specific Element and Attribute
+                        if(titles.children[i].children[j].tagName.toLowerCase() === "melodies" || titles.children[i].children[j].tagName.toLowerCase() === "example ")
+                            // Get 2 Sub Child (Visual : [Attribute] - [Value])
+                            content = `<span>${titles.children[i].children[j].children[k].getAttribute('type')}</span> - ${titles.children[i].children[j].children[k].childNodes[0].nodeValue}`;
+            
+                        else if(titles.children[i].children[j].children[k].tagName.toLowerCase() === "example")
+                            //(Visual : [ElementName] of [Attribute] - [Value])
+                            content = `<span>${titles.children[i].children[j].children[k].tagName + "</span> of " +titles.children[i].children[j].children[k].getAttribute('description')} - ${titles.children[i].children[j].children[k].childNodes[0].nodeValue}`;
+                        else if(titles.children[i].children[j].children[k].tagName.toLowerCase() === "company")
+                            //(Visual : [Element Name 1 Sub Chils] [Element Name of 2 Sub Child] - [Value])
+                            content = `<span>${titles.children[i].children[j].tagName + " " + titles.children[i].children[j].children[k].tagName + "</span>" } - ${titles.children[i].children[j].children[k].childNodes[0].nodeValue}`;
+
+                        else
+                            //(Visual : [Element Name of 2 Sub Child] - [Value])
+                            content = `<span>${titles.children[i].children[j].children[k].tagName}</span> - ${titles.children[i].children[j].children[k].childNodes[0].nodeValue}`;
+
                         txt += 
                         `
-                                <ul>
-                                    <li>${titles.children[i].children[j].children[k].tagName} - ${titles.children[i].children[j].children[k].childNodes[0].nodeValue}</li>
-                                </ul>
-
-
+                            <ul>
+                                <li>${content}</li>
+                            </ul>
                         `;
-
-
-                        
-                    
-                        }
-                        txt += 
-                    `    
-                            </li>
-                        </ul>
-                        
-                    `;
+                    }
+                    txt += `</li>`;
                 } 
-
+                    txt += `</ul>`;
             document.getElementById("xmlConnections").innerHTML = txt;
         }
     }
