@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        h3, h4, span{
+        h4, span{
             text-transform: capitalize;
         }
     </style>
@@ -16,9 +16,9 @@
 
     <button type="button" onclick="loadXMLDoc()">Show</button>
     <hr>
-    <div id="xmlConnections">
+    <table id="xmlConnections" border="1" cellspacing="0" cellpadding="10" width="80%" align="center"">
         
-    </div>
+    </table>
 
     <script>
         function loadXMLDoc() {
@@ -38,18 +38,30 @@
             // Actual XML File Object mode
             xmlDoc = xml.responseXML; 
 
+
+            txt = `
+                <tr>
+                    <th>Lessons</th>
+                    <th>Outlines</th>
+                </tr>
+            `;
+
+            // Get ALl Child of Parent
             var titles = xmlDoc.getElementsByTagName('music')[0];
             
-            txt='';
             
-            // Children
+            // Retrive Childrens
             for (i = 0; i < titles.children.length; i++) {
 
-                // Get Element Name (Childs)
-                txt += `<h3>Lesson ${(i+1) + ": " + titles.children[i].tagName}</h3>`;
-                txt += `<ul>`;
+                txt += 
+                `   <tr>
+                        <td>Lesson ${(i+1) + ": <span>" + titles.children[i].tagName}</span></td>
+                        <td>
+                            <ul>
+                `;
+
                 for (j = 0; j < titles.children[i].children.length; j++) {
-                    // Get Sub Child
+                    // Retrive 1 Sub Child
                     txt += `<li><h4>${titles.children[i].children[j].tagName}</h4>`;
                     
                     for (k = 0; k < titles.children[i].children[j].children.length; k++) {
@@ -57,7 +69,7 @@
                         var content = "";
                         // Condtions Specific Element and Attribute
                         if(titles.children[i].children[j].tagName.toLowerCase() === "melodies" || titles.children[i].children[j].tagName.toLowerCase() === "example ")
-                            // Get 2 Sub Child (Visual : [Attribute] - [Value])
+                            // Retrive 2 Sub Child (Visual : [Attribute] - [Value])
                             content = `<span>${titles.children[i].children[j].children[k].getAttribute('type')}</span> - ${titles.children[i].children[j].children[k].childNodes[0].nodeValue}`;
             
                         else if(titles.children[i].children[j].children[k].tagName.toLowerCase() === "example")
@@ -78,11 +90,20 @@
                             </ul>
                         `;
                     }
-                    txt += `</li>`;
-                } 
-                    txt += `</ul>`;
-            document.getElementById("xmlConnections").innerHTML = txt;
-        }
+                    
+                }
+                txt += 
+                `
+                            </ul>
+                        </td>
+                    </tr>
+                `;
+
+
+                document.getElementById("xmlConnections").innerHTML = txt;
+            }
+            
+
     }
     </script>
 </body>
