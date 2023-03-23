@@ -1,6 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <music>
-
+    <history>
+        <ancient>
+            <country region="Mesopotamia">
+                <instrument no="1">Bovine Lyre</instrument>
+                <instrument no="2">Silver Flute</instrument>
+            </country>
+            <country region="Egypt">
+                <instrument no="1">Aerophones</instrument>
+                <instrument no="2">Oboes</instrument>
+            </country>
+            <country region="Greece">
+                <instrument no="1">Kithara</instrument>
+                <instrument no="2">Bouzouki</instrument>
+            </country>
+            <country region="China">
+                <instrument no="1">Guzheng</instrument>
+                <instrument no="2">Pipa</instrument>
+            </country>
+            <country region="India">
+                <instrument no="1">Dhrupad</instrument>
+                <instrument no="2">Sahnai</instrument>
+            </country>
+        </ancient>
+    </history>
     <culture>
         <folk>            
             <example description="Folk Song 1">Arbucklenian Polka by Hartmann &amp; John</example>

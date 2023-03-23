@@ -33,7 +33,7 @@
         }
         
         function createList(xml) {
-            var i, j, k, xmlDoc, txt;
+            var i, j, k, l, xmlDoc, txt;
             
             // Actual XML File Object mode
             xmlDoc = xml.responseXML; 
@@ -56,15 +56,16 @@
                 txt += 
                 `   <tr>
                         <td>Lesson ${(i+1) + ": <span>" + titles.children[i].tagName}</span></td>
-                        <td>
-                            <ul>
+                        <td><ol type="I">
                 `;
 
                 for (j = 0; j < titles.children[i].children.length; j++) {
                     // Retrive 1 Sub Child
                     txt += `<li><h4>${titles.children[i].children[j].tagName}</h4>`;
                     
+                    txt += `<ol type="A">`;
                     for (k = 0; k < titles.children[i].children[j].children.length; k++) {
+
                         // Temp Data Replacement
                         var content = "";
                         // Condtions Specific Element and Attribute
@@ -79,22 +80,42 @@
                             //(Visual : [Element Name 1 Sub Chils] [Element Name of 2 Sub Child] - [Value])
                             content = `<span>${titles.children[i].children[j].tagName + " " + titles.children[i].children[j].children[k].tagName + "</span>" } - ${titles.children[i].children[j].children[k].childNodes[0].nodeValue}`;
 
+                        // Retrieve 3th child only
+                        else if(titles.children[i].children[j].children.length === 5){
+                            content += 
+                            `
+                                <span>${titles.children[i].children[j].children[k].tagName + "</span> of " + titles.children[i].children[j].children[k].getAttribute('region')}
+                                <ol type="1">
+
+                            `;
+                            for (l = 0; l < titles.children[i].children[j].children[k].children.length; l++) {
+
+                                content += 
+                                `
+                                    <li><span>${titles.children[i].children[j].children[k].children[l].tagName + "</span> of " + titles.children[i].children[j].children[k].children[l].childNodes[0].nodeValue}</li>
+                                `;
+                            }
+                            content += `</ol>`;
+
+                        }
+
                         else
                             //(Visual : [Element Name of 2 Sub Child] - [Value])
                             content = `<span>${titles.children[i].children[j].children[k].tagName}</span> - ${titles.children[i].children[j].children[k].childNodes[0].nodeValue}`;
 
                         txt += 
                         `
-                            <ul>
-                                <li>${content}</li>
-                            </ul>
+                            <li>${content}</li>
                         `;
                     }
+
+                    txt += `</ol>`;
+
                     
                 }
                 txt += 
                 `
-                            </ul>
+                            </ol>
                         </td>
                     </tr>
                 `;
